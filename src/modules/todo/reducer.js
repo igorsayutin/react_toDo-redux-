@@ -8,29 +8,6 @@ const initialState = {
   }
 };
 
-const updateView = status => {
-  switch (status) {
-    case "unchecked":
-      initialState.filter = {
-        activeFilter: "unchecked",
-        filteredList: initialState.toDoList.filter(item => !item.isChecked)
-      };
-      break;
-    case "checked":
-      initialState.filter = {
-        activeFilter: "checked",
-        filteredList: initialState.toDoList.filter(item => item.isChecked)
-      };
-      break;
-    case "all":
-      initialState.filter = {
-        activeFilter: "all",
-        filteredList: initialState.toDoList.slice()
-      };
-      break;
-  }
-};
-
 const todo = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_TODO:
@@ -86,7 +63,7 @@ const todo = (state = initialState, action) => {
       };
 
     case actionTypes.ON_SUBMIT_EDITING_INPUT:
-      if (action.value) {
+      if (!action.value) {
         return {
           ...state,
           toDoList: state.toDoList.filter(item => item.id !== action.key)
@@ -106,10 +83,33 @@ const todo = (state = initialState, action) => {
         };
       }
     case actionTypes.UPDATE_VIEW:
-      updateView(state.filter.activeFilter);
-      return {
-        ...state
-      };
+      if (!action.status) action.status = state.filter.activeFilter;
+      switch (action.status) {
+        case "unchecked":
+          return {
+            ...state,
+            filter: {
+              activeFilter: "unchecked",
+              filteredList: state.toDoList.filter(item => !item.isChecked)
+            }
+          };
+        case "checked":
+          return {
+            ...state,
+            filter: {
+              activeFilter: "checked",
+              filteredList: state.toDoList.filter(item => item.isChecked)
+            }
+          };
+        case "all":
+          return {
+            ...state,
+            filter: {
+              activeFilter: "all",
+              filteredList: state.toDoList.slice()
+            }
+          };
+      }
 
     default:
       return state;
