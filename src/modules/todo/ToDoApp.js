@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ToDoList from "./list/ToDoList";
 import Footer from "./footer/Footer";
-import { getState, isAllChecked } from "./store";
 import {
   addTodo,
   removeTodo,
@@ -11,28 +10,21 @@ import {
   onSubmitEditingInput,
   updateView
 } from "./actions";
-import StoreEventBus from "../StoreEventBus";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-class ToDoListApp extends Component {
+class ToDoApp extends Component {
   state = {
-    ...getState(),
     valueMainInput: ""
   };
 
-  componentDidMount() {
-    StoreEventBus.register(payload => {
-      if (payload.event) {
-        this.setState(getState());
-      }
-    });
-  }
-
   handleAddTodo = e => {
     if (e.keyCode === 13 && this.state.valueMainInput.trim()) {
-      addTodo(this.state.valueMainInput);
+      this.props.actions.addTodo(this.state.valueMainInput);
       this.setState({
         valueMainInput: ""
       });
+      this.props.actions.updateView();
     }
   };
 
@@ -49,31 +41,35 @@ class ToDoListApp extends Component {
     });
   };
 
+  isAllChecked = () => this.props.todo.toDoList.every(item => item.isChecked);
+
   showCheckboxForAll = () => {
-    if (this.state.toDoList.length) {
+    if (this.props.todo.toDoList.length) {
       return (
         <input
           type="checkbox"
           className="checkUncheckAll position-absolute"
-          checked={isAllChecked()}
-          onClick={selectAll}
+          checked={this.isAllChecked()}
+          onClick={() => this.props.actions.selectAll(this.isAllChecked())}
         />
       );
     }
   };
 
   render() {
+    const { toDoList, filter } = this.props.todo;
+    const { actions } = this.props;
     const propsToDoList = {
-      items: this.state.toDoList,
-      removeTodo: removeTodo,
-      check: toggleTodoItem,
-      onSubmitEditingInput: onSubmitEditingInput,
-      filteredList: this.state.filter.filteredList
+      items: toDoList,
+      removeTodo: actions.removeTodo,
+      check: actions.toggleTodoItem,
+      onSubmitEditingInput: actions.onSubmitEditingInput,
+      filteredList: filter.filteredList
     };
     const propsFooter = {
-      items: this.state.toDoList,
-      clearCompletedTodos: clearCompletedTodos,
-      updateView: updateView
+      items: toDoList,
+      clearCompletedTodos: actions.clearCompletedTodos,
+      updateView: actions.updateView
     };
     return (
       <div className="toDoList card p-3 text-center bg-light">
@@ -98,4 +94,28 @@ class ToDoListApp extends Component {
     );
   }
 }
-export default ToDoListApp;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    actions: bindActionCreators(
+      {
+        addTodo,
+        removeTodo,
+        toggleTodoItem,
+        selectAll,
+        clearCompletedTodos,
+        onSubmitEditingInput,
+        updateView
+      },
+      dispatch
+    )
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    todo: state.todo
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoApp);

@@ -11,7 +11,7 @@ function ToDoList({
 }) {
   return (
     <ul className="list-group col-12 text-center p-0 mb-3">
-      {filteredList.map(task => {
+      {items.map(task => {
         return (
           <li
             className="itemsToDo list-group-item text-left d-flex justify-content-between h5 col-12"
