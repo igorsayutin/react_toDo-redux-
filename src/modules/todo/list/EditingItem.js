@@ -40,8 +40,10 @@ class EditingItem extends Component {
   };
 
   handleOnSubmitEditingInput = (e, id) => {
+    let value = this.state.valueEditingItemInput;
     if (e.key === "Enter") {
-      this.props.onSubmitEditingInput(id, this.state.valueEditingItemInput);
+      if (!value) this.props.removeTodo(id);
+      this.props.onSubmitEditingInput(id, value);
       this.setState({
         valueEditingItemInput: "",
         editingItem: null
@@ -82,6 +84,7 @@ EditingItem.propTypes = {
   task: PropTypes.object,
   id: PropTypes.string,
   items: PropTypes.array,
+  removeTodo: PropTypes.func,
   onSubmitEditingInput: PropTypes.func
 };
 export default EditingItem;

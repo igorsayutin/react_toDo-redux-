@@ -28,6 +28,7 @@ function ToDoList({
                 task={task}
                 id={task.id}
                 items={items}
+                removeTodo={removeTodo}
                 onSubmitEditingInput={onSubmitEditingInput}
               />
             </div>

@@ -28,7 +28,9 @@ const todo = (state = initialState, action) => {
     case actionTypes.REMOVE_TODO:
       return {
         ...state,
-        toDoList: state.toDoList.filter(item => item.id !== action.key)
+        toDoList: state.toDoList.filter(item => {
+          if (item.id !== action.key) return { ...item };
+        })
       };
 
     case actionTypes.TOGGLE_TODO_ITEM:
@@ -59,30 +61,34 @@ const todo = (state = initialState, action) => {
     case actionTypes.CLEAR_COMPLETED_TODOS:
       return {
         ...state,
-        toDoList: state.toDoList.filter(item => !item.isChecked)
+        toDoList: state.toDoList.filter(item => {
+          if (!item.isChecked) return { ...item };
+        })
       };
 
     case actionTypes.ON_SUBMIT_EDITING_INPUT:
-      if (!action.value) {
-        return {
-          ...state,
-          toDoList: state.toDoList.filter(item => item.id !== action.key)
-        };
-      } else {
-        return {
-          ...state,
-          toDoList: state.toDoList.map(item => {
-            if (item.id === action.key) {
-              return {
-                ...item,
-                text: action.value
-              };
-            }
-            return { ...item };
-          })
-        };
-      }
+      return {
+        ...state,
+        toDoList: state.toDoList.map(item => {
+          if (item.id === action.key) {
+            return {
+              ...item,
+              text: action.value
+            };
+          }
+          return { ...item };
+        })
+      };
+
     case actionTypes.UPDATE_VIEW:
+      if (!state.toDoList.length)
+        return {
+          ...state,
+          filter: {
+            activeFilter: "all",
+            filteredList: []
+          }
+        };
       if (!action.status) action.status = state.filter.activeFilter;
       switch (action.status) {
         case "unchecked":
@@ -90,7 +96,9 @@ const todo = (state = initialState, action) => {
             ...state,
             filter: {
               activeFilter: "unchecked",
-              filteredList: state.toDoList.filter(item => !item.isChecked)
+              filteredList: state.toDoList.filter(item => {
+                if (!item.isChecked) return { ...item };
+              })
             }
           };
         case "checked":
@@ -98,7 +106,9 @@ const todo = (state = initialState, action) => {
             ...state,
             filter: {
               activeFilter: "checked",
-              filteredList: state.toDoList.filter(item => item.isChecked)
+              filteredList: state.toDoList.filter(item => {
+                if (item.isChecked) return { ...item };
+              })
             }
           };
         case "all":
@@ -106,7 +116,7 @@ const todo = (state = initialState, action) => {
             ...state,
             filter: {
               activeFilter: "all",
-              filteredList: state.toDoList.slice()
+              filteredList: state.toDoList.filter(item => ({ ...item }))
             }
           };
       }
