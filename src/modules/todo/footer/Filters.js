@@ -37,7 +37,7 @@ function Filters({ updateView }) {
 }
 
 Filters.propTypes = {
-  updateView: PropTypes.func
+  updateView: PropTypes.func.isRequired
 };
 
 export default Filters;

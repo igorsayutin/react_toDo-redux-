@@ -46,11 +46,11 @@ function ToDoList({
 }
 
 ToDoList.propTypes = {
-  items: PropTypes.array,
-  check: PropTypes.func,
-  removeTodo: PropTypes.func,
-  onSubmitEditingInput: PropTypes.func,
-  filteredList: PropTypes.array
+  items: PropTypes.array.isRequired,
+  check: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  onSubmitEditingInput: PropTypes.func.isRequired,
+  filteredList: PropTypes.array.isRequired
 };
 
 export default ToDoList;

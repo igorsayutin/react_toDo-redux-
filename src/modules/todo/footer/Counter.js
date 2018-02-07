@@ -10,7 +10,7 @@ function Counter({ items }) {
 }
 
 Counter.propTypes = {
-  items: PropTypes.array
+  items: PropTypes.array.isRequired
 };
 
 export default Counter;

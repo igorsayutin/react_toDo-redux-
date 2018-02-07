@@ -20,9 +20,9 @@ function Footer({ items, clearCompletedTodos, updateView }) {
 }
 
 Footer.propTypes = {
-  items: PropTypes.array,
-  clearCompletedTodos: PropTypes.func,
-  updateView: PropTypes.func
+  items: PropTypes.array.isRequired,
+  clearCompletedTodos: PropTypes.func.isRequired,
+  updateView: PropTypes.func.isRequired
 };
 
 export default Footer;

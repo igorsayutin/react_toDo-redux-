@@ -24,7 +24,6 @@ class ToDoApp extends Component {
       this.setState({
         valueMainInput: ""
       });
-      this.props.actions.updateView();
     }
   };
 

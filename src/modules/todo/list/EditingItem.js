@@ -81,10 +81,10 @@ class EditingItem extends Component {
 }
 
 EditingItem.propTypes = {
-  task: PropTypes.object,
-  id: PropTypes.string,
-  items: PropTypes.array,
-  removeTodo: PropTypes.func,
-  onSubmitEditingInput: PropTypes.func
+  task: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  onSubmitEditingInput: PropTypes.func.isRequired
 };
 export default EditingItem;

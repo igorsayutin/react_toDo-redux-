@@ -17,8 +17,8 @@ function BtnClearCompleted({ items, clearCompletedTodos }) {
 }
 
 BtnClearCompleted.propTypes = {
-  items: PropTypes.array,
-  clearCompletedTodos: PropTypes.func
+  items: PropTypes.array.isRequired,
+  clearCompletedTodos: PropTypes.func.isRequired
 };
 
 export default BtnClearCompleted;
