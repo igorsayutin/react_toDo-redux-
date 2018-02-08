@@ -8,7 +8,7 @@ function Footer({ items, clearCompletedTodos, updateView }) {
   if (!items.length) return null;
 
   return (
-    <footer className="d-flex align-items-center col-12 p-0">
+    <footer className="d-flex align-items-center col-12 p-0 mb-4">
       <Counter items={items} />
       <Filters updateView={updateView} />
       <BtnClearCompleted

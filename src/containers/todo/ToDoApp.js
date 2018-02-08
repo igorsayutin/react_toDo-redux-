@@ -35,7 +35,7 @@ class ToDoApp extends Component {
       updateView: actions.updateView
     };
     return (
-      <div className="toDoList card p-3 text-center bg-light">
+      <div className="toDoList card pt-3 pl-3 pr-3 mb-3 text-center bg-light">
         <Header {...propsHeader} />
         <ToDoList {...propsToDoList} />
         <Footer {...propsFooter} />

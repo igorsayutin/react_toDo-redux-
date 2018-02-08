@@ -9,6 +9,7 @@ function ToDoList({
   onSubmitEditingInput,
   filteredList
 }) {
+  if (!items.length) return null;
   return (
     <ul className="list-group col-12 text-center p-0 mb-3 main position-relative">
       {filteredList.map(task => {
