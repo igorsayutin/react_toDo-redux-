@@ -20,7 +20,10 @@ class ToDoApp extends Component {
 
   handleAddTodo = e => {
     if (e.keyCode === 13 && this.state.valueMainInput.trim()) {
-      this.props.actions.addTodo(this.state.valueMainInput);
+      let id = Math.floor(+new Date() + Math.random() * 0xffffffff).toString(
+        36
+      );
+      this.props.actions.addTodo(this.state.valueMainInput, id);
       this.setState({
         valueMainInput: ""
       });

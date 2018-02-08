@@ -1,10 +1,11 @@
 import * as actionTypes from "./actionTypes";
 
-export const addTodo = value => {
+export const addTodo = (value, id) => {
   return dispatch => {
     dispatch({
       type: actionTypes.ADD_TODO,
-      value
+      value,
+      id
     });
     dispatch({
       type: actionTypes.UPDATE_VIEW

@@ -18,9 +18,7 @@ const todo = (state = initialState, action) => {
           {
             text: action.value.trim(),
             isChecked: false,
-            id: Math.floor(+new Date() + Math.random() * 0xffffffff).toString(
-              36
-            )
+            id: action.id
           }
         ]
       };
