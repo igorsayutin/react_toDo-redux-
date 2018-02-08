@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ToDoList from "./list/ToDoList";
-import Footer from "./footer/Footer";
-import Header from "./header/Header";
+import ToDoList from "../../components/todo/list/ToDoList";
+import Footer from "../../components/todo/footer/Footer";
+import Header from "../../components/todo/header/Header";
 import {
   addTodo,
   removeTodo,
@@ -10,7 +10,7 @@ import {
   clearCompletedTodos,
   onSubmitEditingInput,
   updateView
-} from "./actions";
+} from "../../modules/todo/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 

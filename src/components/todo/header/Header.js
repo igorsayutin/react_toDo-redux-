@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Header extends Component {
   state = {
@@ -66,5 +67,10 @@ class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  items: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+};
 
 export default Header;
