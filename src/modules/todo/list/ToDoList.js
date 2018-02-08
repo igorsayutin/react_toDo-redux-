@@ -10,7 +10,7 @@ function ToDoList({
   filteredList
 }) {
   return (
-    <ul className="list-group col-12 text-center p-0 mb-3">
+    <ul className="list-group col-12 text-center p-0 mb-3 main position-relative">
       {filteredList.map(task => {
         return (
           <li

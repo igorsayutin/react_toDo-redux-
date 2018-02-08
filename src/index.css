@@ -44,9 +44,9 @@ input[type="checkbox"]:checked + label {
   color: #6c757d !important;
   text-decoration: line-through;
 }
-input.position-absolute {
+.toggleCheckAll {
   z-index: 500;
-  top: 18px;
+  top: 23px;
   left: 20px;
 }
 div.position-relative {
