@@ -16,12 +16,11 @@ class Weather extends Component {
     }
     const weather = weatherData.weather[0];
     const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
-    // console.log("weather!!!!!!!!!!!!!!!!!");
     return (
       <section className="col-2 text-center pt-3 d-flex-row align-self-start">
         <h3>{weatherData.name}</h3>
         <p>
-          {weather.main} <img src={iconUrl} alt={weatherData.description} />{" "}
+          {weather.main} <img src={iconUrl} alt={weatherData.description} />
         </p>
         <p>Current: {weatherData.main.temp}°</p>
         <p>High: {weatherData.main.temp_max}°</p>
