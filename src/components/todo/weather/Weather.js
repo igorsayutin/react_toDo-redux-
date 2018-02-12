@@ -2,9 +2,9 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 class Weather extends Component {
-  // componentDidMount() {
-  //   this.props.fetchWeather();
-  // }
+  componentDidMount() {
+    this.props.fetchWeather();
+  }
   render() {
     const weatherData = this.props.weatherData;
     if (weatherData.cod !== 200) {
@@ -16,7 +16,7 @@ class Weather extends Component {
     }
     const weather = weatherData.weather[0];
     const iconUrl = "http://openweathermap.org/img/w/" + weather.icon + ".png";
-    console.log("weather!!!!!!!!!!!!!!!!!");
+    // console.log("weather!!!!!!!!!!!!!!!!!");
     return (
       <section className="col-2 text-center pt-3 d-flex-row align-self-start">
         <h3>{weatherData.name}</h3>
