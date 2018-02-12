@@ -18,7 +18,7 @@ import { bindActionCreators } from "redux";
 
 class ToDoApp extends Component {
   render() {
-    const { toDoList, filter, weatherData } = this.props.todo;
+    const { toDoList, filter } = this.props.todo;
     const { actions } = this.props;
     const propsHeader = {
       items: toDoList,
@@ -37,7 +37,7 @@ class ToDoApp extends Component {
       updateView: actions.updateView
     };
     const propsWeather = {
-      weatherData: weatherData,
+      weatherData: this.props.weather.weatherData,
       fetchWeather: this.props.actions.fetchWeather
     };
     return (
@@ -73,7 +73,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    todo: state.todo
+    todo: state.todo,
+    weather: state.weather
   };
 };
 

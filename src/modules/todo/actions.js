@@ -91,8 +91,8 @@ export const fetchWeather = () => {
       .catch(error => {
         console.log("unable to get weather " + error);
       })
-      .then(respData => {
-        dispatch(fetchWeatherForecastSuccess(respData));
+      .then(data => {
+        dispatch(fetchWeatherForecastSuccess(data));
       });
   };
 };

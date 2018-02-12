@@ -1,10 +1,10 @@
 // import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-
+// let api = `https://jsonplaceholder.typicode.com/users`;
 // // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 // function* fetchUser(action) {
 //   try {
-//     const weatherData = yield call(Api.fetchUser, action.payload.userId);
-//     yield put({ type: "USER_FETCH_SUCCEEDED", user: user });
+//     const userData = yield call(api, action.payload.user[0].name);
+//     yield put({ type: "USER_FETCH_SUCCEEDED", userName });
 //   } catch (e) {
 //     yield put({ type: "USER_FETCH_FAILED", message: e.message });
 //   }
