@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import EditingItem from "./EditingItem";
 
@@ -10,15 +10,16 @@ function ToDoList({
   filteredList
 }) {
   if (!items.length) return null;
+
   return (
-    <ul className="list-group col-12 text-center p-0 mb-3 main position-relative">
+    <ul className="list-group text-center p-0 mb-3">
       {filteredList.map(task => {
         return (
           <li
-            className="itemsToDo list-group-item text-left d-flex justify-content-between h5 col-12"
+            className="itemsToDo list-group-item text-left d-flex justify-content-between h5 col-12 mb-2"
             key={task.id}
           >
-            <div className="d-flex align-items-center col-11 p-0">
+            <div className="d-flex align-items-center col-11 p-0 m-0">
               <input
                 className="mr-3 mb-0 h2"
                 type="checkbox"

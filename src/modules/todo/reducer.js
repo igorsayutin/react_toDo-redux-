@@ -5,7 +5,8 @@ const initialState = {
   filter: {
     activeFilter: "all",
     filteredList: []
-  }
+  },
+  weatherData: {}
 };
 
 const todo = (state = initialState, action) => {
@@ -118,6 +119,12 @@ const todo = (state = initialState, action) => {
             }
           };
       }
+
+    case actionTypes.FETCH_WEATHER_FORECAST_SUCCESS:
+      return {
+        ...state,
+        weatherData: action.result
+      };
 
     default:
       return state;

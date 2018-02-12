@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import ToDoList from "../../components/todo/list/ToDoList";
 import Footer from "../../components/todo/footer/Footer";
 import Header from "../../components/todo/header/Header";
+import Weather from "../../components/todo/weather/Weather";
 import {
   addTodo,
   removeTodo,
@@ -9,14 +10,15 @@ import {
   selectAll,
   clearCompletedTodos,
   onSubmitEditingInput,
-  updateView
+  updateView,
+  fetchWeather
 } from "../../modules/todo/actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 class ToDoApp extends Component {
   render() {
-    const { toDoList, filter } = this.props.todo;
+    const { toDoList, filter, weatherData } = this.props.todo;
     const { actions } = this.props;
     const propsHeader = {
       items: toDoList,
@@ -34,11 +36,18 @@ class ToDoApp extends Component {
       clearCompletedTodos: actions.clearCompletedTodos,
       updateView: actions.updateView
     };
+    const propsWeather = {
+      weatherData: weatherData,
+      fetchWeather: this.props.actions.fetchWeather
+    };
     return (
-      <div className="toDoList card pt-3 pl-3 pr-3 mb-3 text-center bg-light">
-        <Header {...propsHeader} />
-        <ToDoList {...propsToDoList} />
-        <Footer {...propsFooter} />
+      <div className="container-fluid d-flex justify-content-around">
+        <section className="toDoList card pt-3 pl-3 pr-3 mb-3 text-center bg-light col-9 d-flex align-self-start">
+          <Header {...propsHeader} />
+          <ToDoList {...propsToDoList} />
+          <Footer {...propsFooter} />
+        </section>
+        <Weather {...propsWeather} />
       </div>
     );
   }
@@ -54,7 +63,8 @@ const mapDispatchToProps = dispatch => {
         selectAll,
         clearCompletedTodos,
         onSubmitEditingInput,
-        updateView
+        updateView,
+        fetchWeather
       },
       dispatch
     )
