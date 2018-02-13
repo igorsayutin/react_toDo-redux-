@@ -1,32 +1,30 @@
-// import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-// let api = `https://jsonplaceholder.typicode.com/users`;
-// // worker Saga: will be fired on USER_FETCH_REQUESTED actions
-// function* fetchUser(action) {
-//   try {
-//     const userData = yield call(api, action.payload.user[0].name);
-//     yield put({ type: "USER_FETCH_SUCCEEDED", userName });
-//   } catch (e) {
-//     yield put({ type: "USER_FETCH_FAILED", message: e.message });
-//   }
-// }
+import { put, all, call } from "redux-saga/effects";
+import { fetchWeatherForecastSuccess } from "./actionsWeather";
 
-// /*
-//   Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-//   Allows concurrent fetches of user.
-// */
-// function* mySaga() {
-//   yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
-// }
-
-// /*
-//   Alternatively you may use takeLatest.
-
-//   Does not allow concurrent fetches of user. If "USER_FETCH_REQUESTED" gets
-//   dispatched while a fetch is already pending, that pending fetch is cancelled
-//   and only the latest one will be run.
-// */
-// function* mySaga() {
-//   yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
-// }
-
-// export default mySaga;
+export default function* onFetchWeather() {
+  const location_url = `http://ip-api.com/json`;
+  const weather_url = `http://api.openweathermap.org/data/2.5/weather?appid=3b2dce7c397645e8583f51b27d0279dc&units=metric`;
+  let target_url = yield call(function* fetchLocation() {
+    try {
+      const location = yield fetch(location_url).then(response =>
+        response.json()
+      );
+      let weatherByLocation = `${weather_url}&lat=${location.lat}&lon=${
+        location.lon
+      }`;
+      return weatherByLocation;
+    } catch (e) {
+      yield put(console.log(e));
+      return;
+    }
+  });
+  yield call(function* fetchWeatherByLocation() {
+    try {
+      const weather = yield fetch(target_url).then(response => response.json());
+      yield put(fetchWeatherForecastSuccess(weather));
+    } catch (e) {
+      yield put(console.log(e));
+      return;
+    }
+  });
+}

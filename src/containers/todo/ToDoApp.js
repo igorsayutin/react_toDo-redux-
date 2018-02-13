@@ -12,7 +12,7 @@ import {
   onSubmitEditingInput,
   updateView
 } from "../../modules/todo/actions";
-import { fetchWeather } from "../../modules/todo/weather/actionsWeather";
+// import { fetchWeather } from "../../modules/todo/weather/actionsWeather";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -63,8 +63,8 @@ const mapDispatchToProps = dispatch => {
         selectAll,
         clearCompletedTodos,
         onSubmitEditingInput,
-        updateView,
-        fetchWeather
+        updateView
+        // fetchWeather
       },
       dispatch
     )
