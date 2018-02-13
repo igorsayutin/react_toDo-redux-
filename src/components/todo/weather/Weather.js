@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 
 class Weather extends Component {
   componentDidMount() {
-    // this.props.getLocation();
+    this.props.getLocation();
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.location !== this.props.location) {
-      // this.props.getWeatherByLocation(nextProps);
+      this.props.getWeatherByLocation(nextProps);
     }
   }
   render() {
