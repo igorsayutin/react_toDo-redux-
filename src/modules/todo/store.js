@@ -6,4 +6,4 @@ import onFetchWeather from "./weather/sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 export default createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware));
-sagaMiddleware.run(onFetchWeather);
+// sagaMiddleware.run(onFetchWeather);

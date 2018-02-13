@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class Weather extends Component {
   componentDidMount() {
-    // this.props.fetchWeather();
+    this.props.fetchWeather();
   }
   render() {
     const weatherData = this.props.weatherData;
