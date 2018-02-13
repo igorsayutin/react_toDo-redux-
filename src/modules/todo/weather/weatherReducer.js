@@ -1,7 +1,8 @@
 import * as actionTypes from "./actionTypesWeather";
 
 const initialState = {
-  weatherData: {}
+  weatherData: {},
+  location: {}
 };
 
 const weather = (state = initialState, action) => {

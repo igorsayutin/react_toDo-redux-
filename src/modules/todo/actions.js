@@ -7,9 +7,7 @@ export const addTodo = (value, id) => {
       value,
       id
     });
-    dispatch({
-      type: actionTypes.UPDATE_VIEW
-    });
+    dispatch(updateView());
   };
 };
 export const removeTodo = key => {
@@ -18,9 +16,7 @@ export const removeTodo = key => {
       type: actionTypes.REMOVE_TODO,
       key
     });
-    dispatch({
-      type: actionTypes.UPDATE_VIEW
-    });
+    dispatch(updateView());
   };
 };
 export const selectAll = value => {
@@ -29,9 +25,7 @@ export const selectAll = value => {
       type: actionTypes.SELECT_ALL,
       value
     });
-    dispatch({
-      type: actionTypes.UPDATE_VIEW
-    });
+    dispatch(updateView());
   };
 };
 export const toggleTodoItem = key => {
@@ -40,9 +34,7 @@ export const toggleTodoItem = key => {
       type: actionTypes.TOGGLE_TODO_ITEM,
       key
     });
-    dispatch({
-      type: actionTypes.UPDATE_VIEW
-    });
+    dispatch(updateView());
   };
 };
 export const clearCompletedTodos = () => {
@@ -50,9 +42,7 @@ export const clearCompletedTodos = () => {
     dispatch({
       type: actionTypes.CLEAR_COMPLETED_TODOS
     });
-    dispatch({
-      type: actionTypes.UPDATE_VIEW
-    });
+    dispatch(updateView());
   };
 };
 export const onSubmitEditingInput = (key, value) => {
@@ -62,9 +52,7 @@ export const onSubmitEditingInput = (key, value) => {
       key,
       value
     });
-    dispatch({
-      type: actionTypes.UPDATE_VIEW
-    });
+    dispatch(updateView());
   };
 };
 export const updateView = status => ({
