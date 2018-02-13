@@ -1,12 +1,12 @@
-import * as actionTypes from "./actionTypesWeather";
+import { SET_LOCATION, SET_WEATHER_DATA } from "./actionTypesWeather";
 
-export const fetchWeatherByLocation = result => ({
-  type: actionTypes.FETCH_WEATHER_BY_LOCATION,
+export const setWeatherData = result => ({
+  type: SET_WEATHER_DATA,
   result
 });
 
-export const fetchLocation = result => ({
-  type: actionTypes.FETCH_LOCATION,
+export const setLocation = result => ({
+  type: SET_LOCATION,
   result
 });
 
@@ -18,7 +18,7 @@ export const getLocation = () => {
       .catch(error => {
         console.log("unable to get location " + error);
       })
-      .then(data => dispatch(fetchLocation(data)));
+      .then(data => dispatch(setLocation(data)));
   };
 };
 
@@ -33,6 +33,6 @@ export const getWeatherByLocation = obj => {
       .catch(error => {
         console.log("unable to get location " + error);
       })
-      .then(data => dispatch(fetchWeatherByLocation(data)));
+      .then(data => dispatch(setWeatherData(data)));
   };
 };

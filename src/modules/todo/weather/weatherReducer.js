@@ -7,13 +7,13 @@ const initialState = {
 
 const weather = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_WEATHER_BY_LOCATION:
+    case actionTypes.SET_WEATHER_DATA:
       return {
         ...state,
         weatherData: action.result
       };
 
-    case actionTypes.FETCH_LOCATION:
+    case actionTypes.SET_LOCATION:
       return {
         ...state,
         location: {
