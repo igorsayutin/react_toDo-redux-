@@ -7,8 +7,9 @@ class Header extends Component {
   };
 
   handleAddTodo = e => {
-    if (e.keyCode === 13 && this.state.valueMainInput.trim()) {
+    if (e.keyCode === 13) {
       e.preventDefault();
+      if (!this.state.valueMainInput) return;
       let id = Math.floor(+new Date() + Math.random() * 0xffffffff).toString(
         36
       );
@@ -21,7 +22,7 @@ class Header extends Component {
 
   onChangeMainInput = e => {
     this.setState({
-      valueMainInput: e.target.value
+      valueMainInput: e.target.value.trim()
     });
   };
 

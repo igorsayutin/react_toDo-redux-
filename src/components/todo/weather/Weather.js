@@ -2,9 +2,9 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 class Weather extends Component {
-  componentDidMount() {
-    this.props.fetchWeather();
-  }
+  // componentDidMount() {
+  //   this.props.fetchWeather();
+  // }
   render() {
     const weatherData = this.props.weatherData;
     if (weatherData.cod !== 200) {
