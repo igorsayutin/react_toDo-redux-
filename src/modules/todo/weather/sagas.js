@@ -7,8 +7,9 @@ export default function* onFetchWeather() {
 
   yield call(function* fetchLocation() {
     try {
-      const location = yield fetch(locationURL).then(response =>
-        response.json()
+      const location = yield fetch(locationURL).then(
+        response => response.json(),
+        reject => 0
       );
       yield put(fetchLocation(location));
     } catch (e) {
