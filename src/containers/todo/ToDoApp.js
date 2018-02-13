@@ -12,13 +12,17 @@ import {
   onSubmitEditingInput,
   updateView
 } from "../../modules/todo/actions";
-import { fetchWeather } from "../../modules/todo/weather/actionsWeather";
+import {
+  getLocation,
+  getWeatherByLocation
+} from "../../modules/todo/weather/actionsWeather";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 class ToDoApp extends Component {
   render() {
     const { toDoList, filter } = this.props.todo;
+    const { weather } = this.props;
     const { actions } = this.props;
     const propsHeader = {
       items: toDoList,
@@ -37,8 +41,10 @@ class ToDoApp extends Component {
       updateView: actions.updateView
     };
     const propsWeather = {
-      weatherData: this.props.weather.weatherData,
-      fetchWeather: this.props.actions.fetchWeather
+      weatherData: weather.weatherData,
+      location: weather.location,
+      getLocation: actions.getLocation,
+      getWeatherByLocation: actions.getWeatherByLocation
     };
     return (
       <div className="container-fluid d-flex justify-content-around">
@@ -64,7 +70,8 @@ const mapDispatchToProps = dispatch => {
         clearCompletedTodos,
         onSubmitEditingInput,
         updateView,
-        fetchWeather
+        getLocation,
+        getWeatherByLocation
       },
       dispatch
     )

@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 
 class Weather extends Component {
   componentDidMount() {
-    this.props.fetchWeather();
+    this.props.getLocation();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location !== this.props.location) {
+      this.props.getWeatherByLocation(nextProps);
+    }
   }
   render() {
     const weatherData = this.props.weatherData;
@@ -32,7 +37,10 @@ class Weather extends Component {
 }
 
 Weather.propTypes = {
-  weatherData: PropTypes.object.isRequired
+  weatherData: PropTypes.object,
+  location: PropTypes.object,
+  getWeatherByLocation: PropTypes.func,
+  getLocation: PropTypes.func
 };
 
 export default Weather;
