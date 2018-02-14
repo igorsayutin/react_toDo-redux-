@@ -30,9 +30,11 @@ const defaultWeatherData = {
   cod: 200
 };
 
+const fetchData = url => fetch(url).then(res => res.json());
+
 export default function* fetchWeather() {
   try {
-    const location = yield fetch(locationURL).then(res => res.json());
+    const location = yield fetchData(locationURL);
     yield put(setLocation(location));
   } catch (err) {
     yield put(setLocation(defaultLocation));
@@ -42,7 +44,7 @@ export default function* fetchWeather() {
   const { lon, lat } = location;
   const targetURL = `${weatherURL}&lat=${lat}&lon=${lon}`;
   try {
-    const weatherData = yield fetch(targetURL).then(res => res.json());
+    const weatherData = yield fetchData(targetURL);
     yield put(setWeatherData(weatherData));
   } catch (e) {
     yield put(setWeatherData(defaultWeatherData));
