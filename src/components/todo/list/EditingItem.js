@@ -52,7 +52,7 @@ class EditingItem extends Component {
   };
 
   render() {
-    const { task, onSubmitEditingInput, id } = this.props;
+    const { task, id } = this.props;
     if (this.state.editingItem === id) {
       return (
         <input
