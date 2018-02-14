@@ -13,7 +13,7 @@ class Header extends Component {
       let id = Math.floor(+new Date() + Math.random() * 0xffffffff).toString(
         36
       );
-      this.props.actions.addTodo(this.state.valueMainInput, id);
+      this.props.addTodo(this.state.valueMainInput, id);
       this.setState({
         valueMainInput: ""
       });
@@ -42,7 +42,7 @@ class Header extends Component {
           type="checkbox"
           className="toggleCheckAll position-absolute"
           checked={this.isAllChecked()}
-          onClick={() => this.props.actions.selectAll(this.isAllChecked())}
+          onClick={() => this.props.selectAll(this.isAllChecked())}
         />
       );
     }
@@ -71,7 +71,8 @@ class Header extends Component {
 
 Header.propTypes = {
   items: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  addTodo: PropTypes.func.isRequired,
+  selectAll: PropTypes.func.isRequired
 };
 
 export default Header;

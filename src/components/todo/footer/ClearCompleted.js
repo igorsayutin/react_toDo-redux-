@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-function BtnClearCompleted({ items, clearCompletedTodos }) {
+function ClearCompleted({ items, clearCompletedTodos }) {
   if (!items.length) return null;
   let isChecked = items.some(item => item.isChecked);
   if (isChecked) {
@@ -16,9 +16,9 @@ function BtnClearCompleted({ items, clearCompletedTodos }) {
   } else return null;
 }
 
-BtnClearCompleted.propTypes = {
+ClearCompleted.propTypes = {
   items: PropTypes.array.isRequired,
   clearCompletedTodos: PropTypes.func.isRequired
 };
 
-export default BtnClearCompleted;
+export default ClearCompleted;

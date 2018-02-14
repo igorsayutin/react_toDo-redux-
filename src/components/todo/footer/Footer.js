@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Filters from "./Filters";
 import Counter from "./Counter";
-import BtnClearCompleted from "./BtnClearCompleted";
+import ClearCompleted from "./ClearCompleted";
 
 function Footer({ items, clearCompletedTodos, updateView }) {
   if (!items.length) return null;
@@ -11,10 +11,7 @@ function Footer({ items, clearCompletedTodos, updateView }) {
     <footer className="d-flex align-items-center p-0 mb-4">
       <Counter items={items} />
       <Filters updateView={updateView} />
-      <BtnClearCompleted
-        items={items}
-        clearCompletedTodos={clearCompletedTodos}
-      />
+      <ClearCompleted items={items} clearCompletedTodos={clearCompletedTodos} />
     </footer>
   );
 }

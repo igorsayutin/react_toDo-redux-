@@ -19,11 +19,11 @@ import { getLocation, getWeatherByLocation } from "../actions/weatherActions";
 class ToDoApp extends Component {
   render() {
     const { toDoList, filter } = this.props.todo;
-    const { weather } = this.props;
-    const { actions } = this.props;
+    const { weather, actions } = this.props;
     const propsHeader = {
       items: toDoList,
-      actions: actions
+      addTodo: actions.addTodo,
+      selectAll: actions.selectAll
     };
     const propsToDoList = {
       items: toDoList,
