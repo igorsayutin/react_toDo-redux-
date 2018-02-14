@@ -1,4 +1,7 @@
-import { SET_LOCATION, SET_WEATHER_DATA } from "./actionTypesWeather";
+import {
+  SET_LOCATION,
+  SET_WEATHER_DATA
+} from "../actionTypes/weatherActionTypes";
 
 const defaultLocation = {
   lat: 49.9808,

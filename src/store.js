@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from "redux";
-import rootReducer from "../../modules";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
-import fetchWeather from "./weather/fetchWeatherSaga";
+import rootReducer from "./reducers";
+import fetchWeather from "./sagas/fetchWeatherSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
 export default createStore(rootReducer, applyMiddleware(thunk, sagaMiddleware));
-// sagaMiddleware.run(fetchWeather);
+sagaMiddleware.run(fetchWeather);

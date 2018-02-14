@@ -1,4 +1,4 @@
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from "../actionTypes/toDoActionTypes";
 
 export const addTodo = (value, id) => {
   return dispatch => {

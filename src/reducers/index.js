@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import todo from "./todo/reducer";
-import weather from "./todo/weather/weatherReducer";
+import todo from "./toDoReducer";
+import weather from "./weatherReducer";
 
 export default combineReducers({ todo, weather });

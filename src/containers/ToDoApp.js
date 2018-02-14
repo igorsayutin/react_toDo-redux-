@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
-import ToDoList from "../../components/todo/list/ToDoList";
-import Footer from "../../components/todo/footer/Footer";
-import Header from "../../components/todo/header/Header";
-import Weather from "../../components/todo/weather/Weather";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import ToDoList from "../components/todo/list/ToDoList";
+import Footer from "../components/todo/footer/Footer";
+import Header from "../components/todo/header/Header";
+import Weather from "../components/weather/Weather";
 import {
   addTodo,
   removeTodo,
@@ -11,13 +13,8 @@ import {
   clearCompletedTodos,
   onSubmitEditingInput,
   updateView
-} from "../../modules/todo/actions";
-import {
-  getLocation,
-  getWeatherByLocation
-} from "../../modules/todo/weather/actionsWeather";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+} from "../actions/toDoActions";
+import { getLocation, getWeatherByLocation } from "../actions/weatherActions";
 
 class ToDoApp extends Component {
   render() {

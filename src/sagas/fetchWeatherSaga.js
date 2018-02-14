@@ -1,8 +1,9 @@
 import { put, select } from "redux-saga/effects";
-import { setWeatherData, setLocation } from "./actionsWeather";
+import { setWeatherData, setLocation } from "../actions/weatherActions";
 
-const locationURL = `https://ipapi.co/json`;
-const weatherURL = `http://api.openweathermap.org/data/2.5/weather?appid=3b2dce7c397645e8583f51b27d0279dc&units=metric`;
+const locationURL = "https://ipapi.co/json";
+const weatherURL =
+  "http://api.openweathermap.org/data/2.5/weather?appid=3b2dce7c397645e8583f51b27d0279dc&units=metric";
 const defaultLocation = {
   lat: 49.9808,
   lon: 36.2527
@@ -31,9 +32,7 @@ const defaultWeatherData = {
 
 export default function* fetchWeather() {
   try {
-    const locationRes = yield fetch(locationURL);
-    const location = JSON.parse(locationRes);
-
+    const location = yield fetch(locationURL).then(res => res.json());
     yield put(setLocation(location));
   } catch (err) {
     yield put(setLocation(defaultLocation));
@@ -43,10 +42,8 @@ export default function* fetchWeather() {
   const { lon, lat } = location;
   const targetURL = `${weatherURL}&lat=${lat}&lon=${lon}`;
   try {
-    const weatherData = yield fetch(targetURL);
-    const parsedWeatherData = JSON.parse(weatherData);
-
-    yield put(setWeatherData(parsedWeatherData));
+    const weatherData = yield fetch(targetURL).then(res => res.json());
+    yield put(setWeatherData(weatherData));
   } catch (e) {
     yield put(setWeatherData(defaultWeatherData));
   }
