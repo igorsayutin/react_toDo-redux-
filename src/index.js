@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+
 import "./index.css";
-import ToDoApp from "./containers/ToDoApp";
-import store from "./store";
+import App from "./containers/App";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <ToDoApp />
-  </Provider>,
+  // <Provider store={store}>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  // </Provider>,
   document.getElementById("root")
 );

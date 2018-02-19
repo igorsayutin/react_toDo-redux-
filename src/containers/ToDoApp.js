@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import ToDoList from "../components/todo/list/ToDoList";
 import Footer from "../components/todo/footer/Footer";
 import Header from "../components/todo/header/Header";

@@ -1,3 +1,6 @@
+/* global location */
+/* eslint no-restricted-globals: ["off", "location"] */
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
@@ -47,11 +50,24 @@ class Header extends Component {
       );
     }
   };
+  logout = () => {
+    localStorage.clear();
+    // console.log(localStorage, history);
+    history.go("/");
+  };
 
   render() {
     return (
       <header className="text-success h1 mb-3">
+        <button
+          type="button"
+          className=" btn btn-secondary"
+          onClick={this.logout}
+        >
+          Logout
+        </button>
         <h1 className="col-12">todos</h1>
+
         <form className="position-relative">
           {this.showCheckboxForAll()}
           <input

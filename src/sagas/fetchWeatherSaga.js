@@ -45,6 +45,7 @@ export default function* fetchWeather() {
   const targetURL = `${weatherURL}&lat=${lat}&lon=${lon}`;
   try {
     const weatherData = yield fetchData(targetURL);
+
     yield put(setWeatherData(weatherData));
   } catch (e) {
     yield put(setWeatherData(defaultWeatherData));
