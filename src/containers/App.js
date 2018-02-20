@@ -6,15 +6,19 @@ import {
   Redirect
 } from "react-router-dom";
 import { Provider } from "react-redux";
+import { withRouter } from "react-router";
 
 import store from "../store";
 import ToDoApp from "./ToDoApp";
-import AuthorizationPageWithRouter from "./AuthorizationPage";
-import { withRouter } from "react-router";
+import AuthorizationPageWithRouter from "../components/AuthorizationPage";
 
 export default class App extends Component {
   setLoginAndPassword = (login, password) => {
-    localStorage.setItem(login, password);
+    localStorage.setItem("login", login);
+    localStorage.setItem("password", password);
+
+    console.log(localStorage.login);
+    console.log(localStorage.password);
   };
 
   render() {
@@ -22,11 +26,15 @@ export default class App extends Component {
       <Route
         {...rest}
         render={props =>
-          localStorage.length ? <Component {...props} /> : <Redirect to="/" />
+          localStorage.login && localStorage.password ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to="/" />
+          )
         }
       />
     );
-    // const AuthorizationPageWithRouter = withRouter(AuthorizationPage);
+
     return (
       <Provider store={store}>
         <Router>
@@ -34,11 +42,15 @@ export default class App extends Component {
             <Route
               path="/"
               exact
-              render={props => (
-                <AuthorizationPageWithRouter
-                  setLoginAndPassword={this.setLoginAndPassword}
-                />
-              )}
+              render={props =>
+                !(localStorage.login && localStorage.password) ? (
+                  <AuthorizationPageWithRouter
+                    setLoginAndPassword={this.setLoginAndPassword}
+                  />
+                ) : (
+                  <Redirect to="/todos" />
+                )
+              }
             />
             <PrivateRoute path="/todos" component={ToDoApp} />
           </Switch>

@@ -27,36 +27,41 @@ class AuthorizationPage extends Component {
     const { login, password } = this.state;
     e.preventDefault();
     if (login && password) {
-      this.props.setLoginAndPassword(password);
+      this.props.setLoginAndPassword(login, password);
       this.props.history.push("/todos");
     }
   };
 
   render() {
-    const { match, location, history } = this.props;
     return (
       <div className="card col-5 text-center mx-auto p-3 mb-2">
         <h3>Authorization</h3>
-        <form onSubmit={e => this.handleFormData(e)}>
-          {/* <div className="row mb-3"> */}
-          <label htmlFor="loginInput">Login: </label>
-          <input
-            type="text"
-            id="loginInput"
-            value={this.state.login}
-            onChange={this.handleLoginChange}
-          />
-          {/* </div> */}
-          {/* <div className="row"> */}
-          <label htmlFor="passwordInput">Password: </label>
-          <input
-            type="password"
-            id="passwordInput"
-            value={this.state.password}
-            onChange={this.handlePasswordChange}
-          />
-          {/* </div> */}
-          <button type="submit">Sign in</button>
+        <form onSubmit={e => this.handleFormData(e)} className="px-3">
+          <div className="row mb-3">
+            <label htmlFor="loginInput">Login: </label>
+            <input
+              type="text"
+              id="loginInput"
+              value={this.state.login}
+              placeholder="Enter your login"
+              onChange={this.handleLoginChange}
+              className="form-control"
+            />
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="passwordInput">Password: </label>
+            <input
+              type="password"
+              id="passwordInput"
+              value={this.state.password}
+              placeholder="Enter your password"
+              onChange={this.handlePasswordChange}
+              className="form-control"
+            />
+          </div>
+          <button type="submit" className=" btn btn-primary">
+            Sign in
+          </button>
         </form>
       </div>
     );

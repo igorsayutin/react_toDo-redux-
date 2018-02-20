@@ -3,6 +3,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class Header extends Component {
   state = {
@@ -50,23 +51,24 @@ class Header extends Component {
       );
     }
   };
+
   logout = () => {
     localStorage.clear();
-    // console.log(localStorage, history);
-    history.go("/");
   };
 
   render() {
     return (
       <header className="text-success h1 mb-3">
-        <button
-          type="button"
-          className=" btn btn-secondary"
-          onClick={this.logout}
-        >
-          Logout
-        </button>
-        <h1 className="col-12">todos</h1>
+        <div className="clearfix">
+          <Link
+            to="/"
+            className="btn-sm btn-secondary float-right m-0"
+            onClick={this.logout}
+          >
+            Logout
+          </Link>
+        </div>
+        <h1 className="col-12 mb-2">todos</h1>
 
         <form className="position-relative">
           {this.showCheckboxForAll()}
