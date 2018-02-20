@@ -11,11 +11,6 @@ class AuthorizationPage extends Component {
       password: ""
     };
   }
-  static propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
-  };
 
   handleLoginChange = e => {
     this.setState({ login: e.target.value });
@@ -67,6 +62,13 @@ class AuthorizationPage extends Component {
     );
   }
 }
+
+AuthorizationPage.propTypes = {
+  setLoginAndPassword: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 const AuthorizationPageWithRouter = withRouter(AuthorizationPage);
 export default AuthorizationPageWithRouter;
