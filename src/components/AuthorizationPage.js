@@ -21,7 +21,8 @@ class AuthorizationPage extends Component {
     const { login, password } = this.state;
     e.preventDefault();
     if (login && password) {
-      this.props.setLoginAndPassword(login, password);
+      localStorage.setItem("loginForToDo", login);
+      localStorage.setItem("passwordForToDo", password);
       this.props.history.push("/todos");
     }
   };
@@ -63,7 +64,6 @@ class AuthorizationPage extends Component {
 }
 
 AuthorizationPage.propTypes = {
-  setLoginAndPassword: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired

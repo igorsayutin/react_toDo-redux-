@@ -1,48 +1,40 @@
 import React, { Component } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import store from "../store";
 import ToDoApp from "./ToDoApp";
 import AuthorizationPageWithRouter from "../components/AuthorizationPage";
 
 export default class App extends Component {
-  setLoginAndPassword = (login, password) => {
-    localStorage.setItem("login", login);
-    localStorage.setItem("password", password);
-
-    console.log(localStorage.login);
-    console.log(localStorage.password);
-  };
+  isAuthorized = () =>
+    Boolean(localStorage.loginForToDo && localStorage.passwordForToDo);
 
   render() {
-    const PrivateRoute = ({ component: Component, ...rest }) => (
-      <Route
-        {...rest}
-        render={props =>
-          localStorage.login && localStorage.password ? (
-            <Component {...props} />
-          ) : (
-            <Redirect to="/" />
-          )
-        }
-      />
-    );
-
-    return (
-      <Switch>
+    let PrivateRoute = ({ component: Component, ...rest }) => {
+      let routePath, isAuthorized;
+      if (Component === ToDoApp) {
+        routePath = "/";
+        isAuthorized = this.isAuthorized();
+      } else {
+        routePath = "/todos";
+        isAuthorized = !this.isAuthorized();
+      }
+      return (
         <Route
-          path="/"
-          exact
+          {...rest}
           render={props =>
-            !(localStorage.login && localStorage.password) ? (
-              <AuthorizationPageWithRouter
-                setLoginAndPassword={this.setLoginAndPassword}
-              />
+            isAuthorized ? (
+              <Component {...props} />
             ) : (
-              <Redirect to="/todos" />
+              <Redirect to={routePath} />
             )
           }
         />
+      );
+    };
+
+    return (
+      <Switch>
+        <PrivateRoute path="/" exact component={AuthorizationPageWithRouter} />
         <PrivateRoute path="/todos" component={ToDoApp} />
       </Switch>
     );

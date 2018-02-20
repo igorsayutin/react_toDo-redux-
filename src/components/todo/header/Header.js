@@ -53,7 +53,8 @@ class Header extends Component {
   };
 
   logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("loginForToDo");
+    localStorage.removeItem("passwordForToDo");
   };
 
   render() {
