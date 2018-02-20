@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
-import { Provider } from "react-redux";
-import { withRouter } from "react-router";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import store from "../store";
 import ToDoApp from "./ToDoApp";
@@ -36,26 +29,22 @@ export default class App extends Component {
     );
 
     return (
-      <Provider store={store}>
-        <Router>
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={props =>
-                !(localStorage.login && localStorage.password) ? (
-                  <AuthorizationPageWithRouter
-                    setLoginAndPassword={this.setLoginAndPassword}
-                  />
-                ) : (
-                  <Redirect to="/todos" />
-                )
-              }
-            />
-            <PrivateRoute path="/todos" component={ToDoApp} />
-          </Switch>
-        </Router>
-      </Provider>
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={props =>
+            !(localStorage.login && localStorage.password) ? (
+              <AuthorizationPageWithRouter
+                setLoginAndPassword={this.setLoginAndPassword}
+              />
+            ) : (
+              <Redirect to="/todos" />
+            )
+          }
+        />
+        <PrivateRoute path="/todos" component={ToDoApp} />
+      </Switch>
     );
   }
 }
