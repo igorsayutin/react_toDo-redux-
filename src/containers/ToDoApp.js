@@ -13,11 +13,22 @@ import {
   selectAll,
   clearCompletedTodos,
   onSubmitEditingInput,
-  updateView
+  updateView,
+  getServerData,
+  setServerData
 } from "../actions/toDoActions";
 import { getLocation, getWeatherByLocation } from "../actions/weatherActions";
 
 class ToDoApp extends Component {
+  componentDidMount() {
+    this.props.actions.getServerData();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.todo.toDoList !== this.props.todo.toDoList) {
+      this.props.actions.setServerData();
+    }
+  }
+
   render() {
     const { toDoList, filter } = this.props.todo;
     const { weather, actions } = this.props;
@@ -69,7 +80,9 @@ const mapDispatchToProps = dispatch => {
         onSubmitEditingInput,
         updateView,
         getLocation,
-        getWeatherByLocation
+        getWeatherByLocation,
+        getServerData,
+        setServerData
       },
       dispatch
     )

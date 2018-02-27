@@ -10,6 +10,11 @@ const initialState = {
 
 const todo = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SET_STORE_DATA_FROM_SERVER:
+      return {
+        ...state,
+        toDoList: action.data
+      };
     case actionTypes.ADD_TODO:
       return {
         ...state,

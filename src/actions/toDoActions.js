@@ -59,3 +59,15 @@ export const updateView = status => ({
   type: actionTypes.UPDATE_VIEW,
   status
 });
+
+export const getServerData = () => ({
+  type: actionTypes.GET_SERVER_DATA
+});
+export const setStoreDataFromServer = data => ({
+  type: actionTypes.SET_STORE_DATA_FROM_SERVER,
+  data
+});
+
+export const setServerData = () => ({
+  type: actionTypes.SET_SERVER_DATA
+});

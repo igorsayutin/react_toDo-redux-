@@ -32,7 +32,7 @@ const defaultWeatherData = {
 
 const fetchData = url => fetch(url).then(res => res.json());
 
-export default function* fetchWeather() {
+export function* fetchWeather() {
   try {
     const location = yield fetchData(locationURL);
     yield put(setLocation(location));
